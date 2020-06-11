@@ -10,7 +10,7 @@ Scanner leer=new Scanner(System.in);
 
 Tarjeta tarjeta;
 
-int nCuenta, NIP, opcion, Deposito, retiro, Ap;
+int nCuenta, NIP, opcion;
 System.out.print("Ingrese su numero de cuenta: ");
 nCuenta=leer.nextInt();
 
@@ -31,7 +31,11 @@ System.out.println("Tu nombre es el siguiente chavo:"+tarjeta.nombre);
              while(!salir){
            System.out.println("1.- Hacer un Deposito");
            System.out.println("2.- Hacer un retiro");
-           System.out.println("3.- Eliminar apartado");
+           if (tarjeta.mApartado > 0){
+            System.out.println("3.- Eliminar apartado");
+            }else{
+                System.out.println("3.-Crear apartado");
+            }
            System.out.println("4.- Imprimir datos de la cuenta");
            System.out.println("5.- salir");
             
@@ -42,15 +46,24 @@ System.out.println("Tu nombre es el siguiente chavo:"+tarjeta.nombre);
            switch(opcion){
                case 1:
                    System.out.println("Ingrese el monto a depositar");
-                   Deposito=leer.nextInt();
+                   double Deposito = leer.nextDouble();
+                    tarjeta.Deposito(Deposito);
                    break;
                case 2:
                    System.out.println("Cuanto dinero va a retirar");
-                    retiro=leer.nextInt();
+                    double Retiro = leer.nextDouble();
+                    tarjeta.verificarRetiro(Retiro);
                    break;
                 case 3:
-                   System.out.println("Que apartado quieres eliminar");
-                    Ap=leer.nextInt();
+                   if(tarjeta.mApartado !=0){
+                        tarjeta.Apartado();
+                        System.out.println("Apartado eliminado");
+                    }
+                   else{
+                        System.out.println("Cantidad a apartdar");
+                        double apartado = leer.nextDouble();
+                        tarjeta.VApartado(apartado);
+                    }
                    break;
                 case 4:
                    System.out.println("Imprimir datos de la cuenta");

@@ -7,8 +7,9 @@ public class Tarjeta {
     int mes;
     int anio;
     int cv;
-    double monto;
+    double montoD;
     double mApartado;
+    
     
     public Tarjeta (){ //constructor vacio
     
@@ -22,7 +23,7 @@ public class Tarjeta {
     this.mes=mes;
     this.anio=anio;
     this.cv=cv;
-    this.monto=monto;
+    this.montoD=montoD;
     this.mApartado=mApartado;
     }
 
@@ -41,15 +42,75 @@ public class Tarjeta {
             return new Tarjeta();
     }
     
+    public void Deposito(double deposito)
+    {
+        this.montoD = this.montoD + deposito;
+    }
+    
+   public void verificarRetiro(double retiro){
+        if (retiro <= this.montoD ){
+            retiro(retiro);
+            System.out.println("Retiro hecho :D ");
+            
+        }
+        else{
+            System.out.println("No hay saldo D: ");
+        }
+    }
+    public void retiro(double retiro){
+        this.montoD = this.montoD - retiro;
+
+    }
+   public void Apartado(){
+        this.montoD = this.montoD + this.mApartado;
+        this.mApartado = 0;
+    }
+   public void VApartado(double apartado){
+        if (apartado <= this.montoD){
+            crearApartado(apartado);
+            System.out.println("Apartado listo :D");
+            
+        }
+        else{
+            
+            System.out.println("No hay saldo D: ");
+        }
+    }
+   public void crearApartado(double apartado){
+        this.mApartado=this.mApartado+apartado;
+        this.montoD = this.montoD +  this.mApartado;
+        
+    }
     public double Total(){
-        return this.monto+this.mApartado;
+        return this.montoD + this.mApartado;
+        
     }
     
     @Override
     public String toString() {
-        return "nCuenta=" + nCuenta + "\n nombre=" + nombre + "\n Fecha de vencimiento=" + dia + ", mes=" + mes + ", anio=" + anio + ", cv=" + cv + ", monto=" + monto + ", mApartado=" + mApartado + '}';
+        return "nCuenta = " + nCuenta + "\n nombre = " + nombre + "\n Fecha de vencimiento = " + dia + "/" + mes + "/" + anio + "\n cv = " + cv + "\n monto = " + montoD + "\n mApartado = " + mApartado +  "\n Total = "  + this.Total();
+   
     }
+
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    private void retirar(double retirar) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
+
+
+    
+
+    
+
 
